@@ -77,6 +77,7 @@ module.exports = (sequelize, DataTypes) => {
       email: DataTypes.STRING,
       password: DataTypes.STRING,
       skor: DataTypes.INTEGER,
+      isplayed: DataTypes.BOOLEAN
     },
     {
       sequelize,
