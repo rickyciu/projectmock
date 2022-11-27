@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "sigddhma",
+    "password": "E2iZAResX7ZQU4JVSqbgLkeospTIX9Y2",
+    "database": "sigddhma",
+    "host": "rosie.db.elephantsql.com",
+    "dialect": "postgres"
+  },
+  "test": {
+    "username": "root",
+    "password": null,
+    "database": "database_test",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "sigddhma",
+    "password": "E2iZAResX7ZQU4JVSqbgLkeospTIX9Y2",
+    "database": "sigddhma",
+    "host": "rosie.db.elephantsql.com",
+    "dialect": "postgres"
+  }
+}
