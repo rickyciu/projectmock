@@ -9,7 +9,25 @@ var cors = require("cors");
 const session = require("express-session");
 app.use(cors());
 app.use(express.urlencoded());
+const cloudinary = require("cloudinary").v2;
+const multer = require("multer");
 
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, "./uploads/");
+  },
+  filename: (req, file, cb) => {
+    cb(null, file.originalname);
+  },
+});
+
+const upload = multer({ storage });
+
+cloudinary.config({
+  cloud_name: "dg1sb4tuf",
+  api_key: "132382796296176",
+  api_secret: "7VVJ1m-ffN8kEkruUN74qsZQmsk",
+});
 app.use(
   session({
     secret: "SECRET",
@@ -17,6 +35,37 @@ app.use(
     saveUninitialized: false,
   })
 );
+
+const uploadImage = async (imagePath) => {
+  const options = {
+    use_filename: true,
+    unique_filename: true,
+    overwrite: false,
+  };
+
+  try {
+    // Upload the image
+    const result = await cloudinary.uploader.upload(imagePath, options);
+    console.log(result);
+    return result;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+const getAssetInfo = async (publicId) => {
+  const options = {
+    colors: true,
+  };
+
+  try {
+      const result = await cloudinary.api.resource(publicId, options);
+      console.log(result);
+      return result;
+      } catch (error) {
+      console.error(error);
+  }
+};
 
 app.use(cors());
 const passport = require("./lib/passport");
@@ -50,6 +99,17 @@ async function testConnection() {
     console.error("Unable to connect to the database:", error);
   }
 }
+
+app.get("/profile", async (req, res) => {
+  const publicId = 'Screenshot_2022-12-09_at_7.58.58_PM_a4hra6'
+  const upload = await getAssetInfo(publicId);
+  res.send({imageUrl: upload.secure_url, fullName: 'Alimuddin Hasan'});
+});
+
+app.post("/upload", upload.single("image"), async (req, res, next) => {
+  const upload = await uploadImage(req.file.path);
+  res.send(upload);
+});
 
 app.use(router);
 const { send } = require("process");
