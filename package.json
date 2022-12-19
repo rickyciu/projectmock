@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon server.js",
+    "test": "jest"
   },
   "author": "",
   "license": "ISC",
@@ -22,8 +22,11 @@
     "firebase": "^9.13.0",
     "jsonwebtoken": "^8.5.1",
     "make-runnable": "^1.4.0",
+    "mock": "^0.1.1",
+    "mock-express-request": "^0.2.2",
     "morgan": "^1.10.0",
     "multer": "^1.4.5-lts.1",
+    "mysql2": "^2.3.3",
     "nodemon": "^2.0.20",
     "npm-run-all": "^4.1.5",
     "passport": "^0.6.0",
@@ -34,6 +37,14 @@
     "sequelize": "^6.25.3"
   },
   "devDependencies": {
-    "sequelize-cli": "^6.5.2"
+    "@jest-mock/express": "^2.0.1",
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^13.4.0",
+    "jest": "^29.3.1",
+    "jest-environment-jsdom": "^29.3.1",
+    "jest-mock-axios": "^4.7.0-beta2",
+    "sequelize-cli": "^6.5.2",
+    "sequelize-test-helpers": "^1.4.3",
+    "supertest": "^6.3.3"
   }
 }
