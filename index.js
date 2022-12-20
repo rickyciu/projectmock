@@ -111,6 +111,5 @@ app.post("/upload", upload.single("image"), async (req, res, next) => {
 });
 
 const { send } = require("process");
-testConnection();
 
 module.exports = app;

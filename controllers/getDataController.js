@@ -6,6 +6,7 @@ const { param } = require("../router");
 
 module.exports = {
   dataUser: async (req, res) => {
+    console.log('MASUK DATA USER')
     const datas = await Users.findAll();
     res.send(datas);
   },
